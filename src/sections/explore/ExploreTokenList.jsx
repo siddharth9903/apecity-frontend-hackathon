@@ -9,7 +9,7 @@ import { TOKENS_QUERY, TOTAL_TOKENS_QUERY } from '../../graphql/queries/tokenQue
 import { createIpfsUrlFromContentHash, formatNumber } from '../../utils/formats';
 import { FaCircleInfo } from "react-icons/fa6";
 import { nativeCurrencyDetails } from '../../utils/native';
-import { getChainLogo } from '../../config/chains';
+import { getChainLogo, getChainNameFromId, supportedChains } from '../../config/chains';
 
 
 const ExploreTokenList = ({ searchResults, sortBy, orderBy, reorderInterval }) => {
@@ -143,13 +143,17 @@ export const Item = ({ item }) => {
             </td>
             <td className="px-4 py-4">
                 <div className="flex gap-x-2 items-center">
-                    <span className="text-[#808080] uppercase text-sm font-400">chain</span>
-                    <img src={getChainLogo(chainId)} className="h-6 w-6" alt="Ethereum Logo" />
+                    <span className="text-[#808080] uppercase text-sm font-400 ">chain</span>
+                    {/* {supportedChains.find(chain=>chain.chainId==chainId).name} */}
+                    <span className='text-white'>
+                        {getChainNameFromId(chainId)}
+                    </span>
+                    {/* <img src={getChainLogo(chainId)} className="h-6 w-6" alt="Ethereum Logo" /> */}
                 </div>
             </td>
             <td className="px-4 py-4">
                 <div className="flex gap-x-2 items-center">
-                    <span className="text-[#808080] uppercase text-sm pfont-400">curve</span>
+                    <span className="text-[#808080] uppercase text-sm pfont-400 ">curve</span>
                     <span className="text-sm text-white pfont-600">{curveType}</span>
                 </div>
             </td>
